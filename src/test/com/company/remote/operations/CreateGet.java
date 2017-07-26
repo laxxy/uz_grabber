@@ -1,15 +1,6 @@
 package com.company.remote.operations;
 
 
-import com.company.remote.operations.context.Credentials;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
-
 /**
  * Created by Никита Овсянников on 06.07.2017.
  */

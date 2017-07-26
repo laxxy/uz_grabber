@@ -4,7 +4,6 @@ package com.company.remote.operations;
 import com.company.remote.operations.context.Parameters;
 import com.company.remote.operations.context.RequestContext;
 
-import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -26,13 +25,17 @@ public class CreatePost {
             con.setRequestMethod("POST");
             con.setInstanceFollowRedirects(followRedirects);
             con.setUseCaches(false);
-            con.setRequestProperty("User-Agent", "User-Agent");
-            con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+            con.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:46.0) Gecko/20100101 Firefox/46.0");
+            con.setRequestProperty("Accept-Language", "en-GB,en;q=0.5");
+            con.setRequestProperty("GV-Ajax", "1");
+            con.setRequestProperty("GV-Screen", "1920x1080");
+        con.setRequestProperty("GV-Referer", "http://booking.uz.gov.ua/ru/");
+
 
             // Send post request
             con.setDoOutput(true);
             DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-            wr.writeBytes(requestContext.getUrlParameters() + Parameters.CALL);
+            wr.writeBytes(/*requestContext.getUrlParameters() + */Parameters.CALL);
             wr.flush();
             wr.close();
 

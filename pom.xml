@@ -28,7 +28,7 @@
         <testng.dir>${resources.dir}${file.separator}testNG</testng.dir>
         <drivers.dir>${resources.dir}${file.separator}drivers</drivers.dir>
         <report.dir>${project.basedir}${file.separator}report</report.dir>
-        <suite.dir>${resources.dir}${file.separator}testNG${file.separator}</suite.dir>
+        <suite.dir>${project.basedir}${file.separator}suite${file.separator}</suite.dir>
         <serialize.dir>${project.basedir}${file.separator}serialize</serialize.dir>
         <response.dir>${project.basedir}${file.separator}response</response.dir>
         <images.dir>${resources.dir}${file.separator}images</images.dir>
@@ -49,9 +49,9 @@
         <local_app>app-stage-release-1279.apk</local_app>
 
         <!--Default suites-->
-        <APISuite>${suite.dir}AppiumTests.xml</APISuite>
+        <APISuite>${suite.dir}main.xml</APISuite>
 
-        <!-- Default suite files if not being specified from mvn command line -->
+        <!-- Defacom.company.suiteuite files if not being specified from mvn command line -->
         <defaultSuiteFiles>
             ${APISuite}
         </defaultSuiteFiles>
@@ -87,6 +87,12 @@
                     <artifactId>httpmime</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.glassfish.main.extras</groupId>
+            <artifactId>glassfish-embedded-all</artifactId>
+            <version>4.1.1</version>
         </dependency>
 
         <dependency>
@@ -172,18 +178,8 @@
                             <value>false</value>
                         </property>
                         <property>
-                            <name>delegateCommandSystemProperties</name>
-                            <value>true</value>
-                        </property>
-                        <property>
                             <name>usedefaultlisteners</name>
-                            <value>false</value>
-                        </property>
-                        <property>
-                            <name>listener</name>
-                            <value>
-                                net.qatestlab.reporting.TestListener
-                            </value>
+                            <value>true</value>
                         </property>
                     </properties>
 
@@ -213,85 +209,6 @@
                     </dependency>
                 </dependencies>
             </plugin>
-
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.0.0</version>
-                <configuration>
-                    <descriptors>
-                        <descriptor>main/resources/assembly/zip.xml</descriptor>
-                    </descriptors>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>make-assembly</id> <!-- this is used for inheritance merges -->
-                        <phase>site-deploy</phase> <!-- append to the packaging phase. -->
-                        <goals>
-                            <goal>single</goal> <!-- goals == mojos -->
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>ch.fortysix</groupId>
-                <artifactId>maven-postman-plugin</artifactId>
-                <version>0.1.6</version>
-                <configuration>
-                    <mailhost>smtp.gmail.com</mailhost>
-                    <mailport>465</mailport>
-                    <mailssl>true</mailssl>
-                    <mailAltConfig>true</mailAltConfig>
-                    <mailuser>qa.tenten@gmail.com</mailuser>
-                    <mailpassword>78Qa22!#</mailpassword>
-                    <from>qa.tenten@gmail.com</from>
-                    <receivers>
-                        <receiver></receiver>
-                    </receivers>
-
-                    <subject>Testing results1</subject>
-                    <failonerror>true</failonerror>
-                    <htmlMessage>
-                        <![CDATA[
-            <p>Hi,</p>
-            <p>Check out the attached report.</p>
-            ]]>
-                    </htmlMessage>
-                    <fileSets>
-                        <fileSet>
-                            <directory>${basedir}/target</directory>
-                            <includes>
-                                <include>**URB-IT-1.0-SNAPSHOT-bin.zip</include>
-                            </includes>
-                        </fileSet>
-                    </fileSets>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>send-mail</goal>
-                        </goals>
-                        <phase>site-deploy</phase>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!--Needed only to show reports locally. Run jetty:run and
-            open localhost:8080 to show the report-->
-            <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.4.4.v20170414</version>
-                <configuration>
-                    <webAppSourceDirectory>${report.dir}</webAppSourceDirectory>
-                    <stopKey>stop</stopKey>
-                    <stopPort>1234</stopPort>
-                    <httpConnector>
-                        <port>9999</port>
-                    </httpConnector>
-                </configuration>
-            </plugin>
-
         </plugins>
     </build>
 
