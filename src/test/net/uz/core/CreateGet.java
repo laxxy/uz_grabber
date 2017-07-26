@@ -1,4 +1,4 @@
-package com.company.remote.operations;
+package net.uz.core;
 
 
 /**

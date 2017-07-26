@@ -1,4 +1,4 @@
-package com.company.remote.operations.context;
+package net.uz.core.context;
 
 /**
  * Created by Никита Овсянников on 06.07.2017.

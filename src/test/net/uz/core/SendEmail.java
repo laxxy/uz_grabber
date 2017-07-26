@@ -1,7 +1,6 @@
-package com.company.remote.operations;
+package net.uz.core;
 
 import javax.mail.*;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
@@ -57,7 +56,7 @@ public class SendEmail {
             }
         }
 
-        public static void send1() {
+        public static void send1(String who) {
             final String username = "tess.testss@gmail.com";
             final String password = "321654789";
 
@@ -79,7 +78,7 @@ public class SendEmail {
                 Message message = new MimeMessage(session);
                 message.setFrom(new InternetAddress("tess.testss@gmail.com"));
                 message.setRecipients(Message.RecipientType.TO,
-                        InternetAddress.parse("tess.testss@gmail.com"));
+                        InternetAddress.parse(who));
                 message.setSubject("Testing Subject");
                 message.setText("Dear Mail Crawler,"
                         + "\n\n No spam to my email, please!");

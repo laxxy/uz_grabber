@@ -9,15 +9,6 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <!--<repositories>-->
-    <!--<repository>-->
-    <!--<id>sonatype</id>-->
-    <!--<url>https://oss.sonatype.org/content/repositories/snapshots/</url>-->
-    <!--<snapshots/>-->
-    <!--</repository>-->
-    <!--</repositories>-->
-
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -33,20 +24,6 @@
         <response.dir>${project.basedir}${file.separator}response</response.dir>
         <images.dir>${resources.dir}${file.separator}images</images.dir>
         <apk.dir>${resources.dir}${file.separator}apk</apk.dir>
-        <base.url>https://mail.google.com</base.url>
-
-        <!--<hub>http://10.1.0.217:4444/wd/hub</hub>-->
-        <!--<hub>http://localhost:4444/wd/hub</hub>-->
-        <hub/>
-        <browser>firefox</browser>
-        <platform_mobile>Android</platform_mobile>
-        <host>127.0.0.1</host>
-        <port>4723</port>
-        <appium_version>1.4.16</appium_version>
-        <device_name>emulator-5554</device_name>
-        <platform_version>6.0.1</platform_version>
-        <!--<local_app>Beta by Crashlytics.apk</local_app>-->
-        <local_app>app-stage-release-1279.apk</local_app>
 
         <!--Default suites-->
         <APISuite>${suite.dir}main.xml</APISuite>
@@ -58,7 +35,6 @@
         <suiteFile>${defaultSuiteFiles}</suiteFile>
 
         <aspectj.version>1.8.10</aspectj.version>
-        <allure.version>1.4.19</allure.version>
 
     </properties>
 
@@ -81,12 +57,6 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>6.9.9</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.httpcomponents</groupId>
-                    <artifactId>httpmime</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>
@@ -160,10 +130,6 @@
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
-                    <systemPropertyVariables>
-                        <drivers.dir>${drivers.dir}</drivers.dir>
-                        <!--<config.dir>${project.basedir}${file.separator}main${file.separator}resources</config.dir>-->
-                    </systemPropertyVariables>
                     <properties>
                         <property>
                             <name>surefire.testng.verbose</name>
@@ -179,7 +145,7 @@
                         </property>
                         <property>
                             <name>usedefaultlisteners</name>
-                            <value>true</value>
+                            <value>false</value>
                         </property>
                     </properties>
 
@@ -211,19 +177,5 @@
             </plugin>
         </plugins>
     </build>
-
-    <reporting>
-        <excludeDefaults>true</excludeDefaults>
-        <plugins>
-            <plugin>
-                <groupId>ru.yandex.qatools.allure</groupId>
-                <artifactId>allure-maven-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <reportDirectory>${report.dir}</reportDirectory>
-                </configuration>
-            </plugin>
-        </plugins>
-    </reporting>
 
 </project>

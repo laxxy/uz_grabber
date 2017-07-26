@@ -1,8 +1,7 @@
-package com.company.remote.operations;
+package net.uz.core;
 
-
-import com.company.remote.operations.context.Parameters;
-import com.company.remote.operations.context.RequestContext;
+import net.uz.core.context.Parameters;
+import net.uz.core.context.RequestContext;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;

@@ -1,4 +1,4 @@
-package com.company.remote.operations.context;
+package net.uz.core.context;
 
 import java.net.MalformedURLException;
 import java.net.URL;
