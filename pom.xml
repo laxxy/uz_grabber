@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <groupId>com.clear.selenium</groupId>
+    <artifactId>maven-TEST-selenium</artifactId>
+    <version>1.0-SNAPSHOT</version>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>UZ</groupId>
-    <artifactId>UZ</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <name>Ucraft Maven Project</name>
+    <description>DESCRIPTION</description>
+    <url>http://www.google.com</url>
+
+    <licenses>
+        <license>
+            <name>Apache 2</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -17,22 +29,11 @@
         <resources.dir>${project.basedir}${file.separator}main${file.separator}resources</resources.dir>
         <build.dir>${project.basedir}${file.separator}build</build.dir>
         <testng.dir>${resources.dir}${file.separator}testNG</testng.dir>
-        <drivers.dir>${resources.dir}${file.separator}drivers</drivers.dir>
-        <report.dir>${project.basedir}${file.separator}report</report.dir>
-        <suite.dir>${project.basedir}${file.separator}suite${file.separator}</suite.dir>
-        <serialize.dir>${project.basedir}${file.separator}serialize</serialize.dir>
-        <response.dir>${project.basedir}${file.separator}response</response.dir>
-        <images.dir>${resources.dir}${file.separator}images</images.dir>
-        <apk.dir>${resources.dir}${file.separator}apk</apk.dir>
+        <suite.dir>${project.basedir}${file.separator}config${file.separator}testNG${file.separator}</suite.dir>
 
-        <!--Default suites-->
-        <APISuite>${suite.dir}main.xml</APISuite>
-
-        <!-- Defacom.company.suiteuite files if not being specified from mvn command line -->
-        <defaultSuiteFiles>
-            ${APISuite}
-        </defaultSuiteFiles>
-        <suiteFile>${defaultSuiteFiles}</suiteFile>
+        <suiteFile>
+            ${suite.dir}main.xml
+        </suiteFile>
 
         <aspectj.version>1.8.10</aspectj.version>
 
@@ -94,7 +95,6 @@
             <version>2.8.1</version>
         </dependency>
 
-
     </dependencies>
 
     <build>
@@ -112,15 +112,25 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.0.2</version>
             </plugin>
-            <!--<plugin>-->
-            <!--<artifactId>maven-surefire-plugin</artifactId>-->
-            <!--<version>2.18.1</version>-->
-            <!--<configuration>-->
-            <!--<suiteXmlFiles>-->
-            <!--<suiteXmlFile>${testng.dir}</suiteXmlFile>-->
-            <!--</suiteXmlFiles>-->
-            <!--</configuration>-->
-            <!--</plugin>-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>MainTest</mainClass>
+                    <arguments>
+                        <!--<argument>foo</argument>
+                        <argument>bar</argument>-->
+                    </arguments>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
